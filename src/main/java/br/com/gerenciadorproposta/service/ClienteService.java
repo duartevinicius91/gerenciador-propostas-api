@@ -24,7 +24,8 @@ public class ClienteService implements CrudService<Cliente, Long> {
 
     @Override
     public Cliente findOne(Long id) throws EntityNotFoundException {
-        return repository.getOne(id);
+        return repository.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Registro não encontrado."));
     }
 
     @Override

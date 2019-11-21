@@ -35,14 +35,14 @@ public class ClienteResource {
         return clienteService.findOne(id);
     }
 
-    @PostMapping("/{id}")
+    @PostMapping()
     @ResponseStatus(code = HttpStatus.CREATED)
     public Cliente save(@RequestBody Cliente cliente) {
         return clienteService.save(cliente);
     }
 
     @PutMapping("/{id}")
-    public Cliente update(@RequestBody Cliente cliente) {
+    public Cliente update(@PathVariable("id") Long id, @RequestBody Cliente cliente) {
         return clienteService.update(cliente);
     }
 
