@@ -1,20 +1,20 @@
-## Trabalho para a disciplina de Engenharia de Software III do IFRS Campus Porto Alegre
+# Trabalho para a disciplina de Engenharia de Software III do IFRS Campus Porto Alegre
 
-### Pré-requisitos
+## Pré-requisitos
 - JDK 8
-- PostgreSQL
 
-#
-### Instalação
-- Criar um banco de dados com o nome ''.
-- Executar o script 'schema.sql' para criação das tabelas e inserção dos dados.
-
-### Como executar
+## Como executar
 Para executar o projeto basta executar o comando a seguir:
+```
+./mvnw spring-boot:run
+```
 
-./mvnw springBoot:run
-
-Após executar o projeto é possível acessar a aplicação pela seguinte URL:
+## Como acessar
+Acessar a aplicação pela seguinte URL:
 
 http://localhost:8080/
-```
+
+## Documentação da API
+A documentação pode ser acessada pela seguinte URL:
+
+http://localhost:8080/swagger-ui.html
