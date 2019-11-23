@@ -31,7 +31,7 @@ public class Cliente {
     private Long id;
 
     @ApiModelProperty(value = "CNPJ sem pontuação.", example = "09211531000106")
-    @CNPJ
+    @CNPJ(message = "O campo deve conter um CNPJ válido.")
     @NotEmpty
     private String cnpj;
 
