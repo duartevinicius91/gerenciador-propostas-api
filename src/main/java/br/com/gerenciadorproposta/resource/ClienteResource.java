@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gerenciadorproposta.model.Cliente;
+import br.com.gerenciadorproposta.resource.ApiControllerAdvice.ApiError;
 import br.com.gerenciadorproposta.service.ClienteService;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/clientes")
@@ -37,12 +40,18 @@ public class ClienteResource {
     }
 
     @PostMapping
+    @ApiResponses(
+        @ApiResponse(code = 400, message = "Bad request", response = ApiError.class)
+    )
     @ResponseStatus(code = HttpStatus.CREATED)
     public Cliente save(@Valid @RequestBody Cliente cliente) {
         return clienteService.save(cliente);
     }
 
     @PutMapping("/{id}")
+    @ApiResponses(
+        @ApiResponse(code = 400, message = "Bad request", response = ApiError.class)
+    )
     public Cliente update(@PathVariable("id") Long id, @Valid @RequestBody Cliente cliente) {
         return clienteService.update(cliente);
     }

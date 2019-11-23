@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import br.com.gerenciadorproposta.exception.BusinessException;
 import br.com.gerenciadorproposta.exception.EntityNotFoundException;
+import io.swagger.annotations.ApiModel;
 
 import java.util.Date;
 import java.util.List;
