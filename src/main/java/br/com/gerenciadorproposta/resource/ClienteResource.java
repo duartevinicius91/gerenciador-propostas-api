@@ -2,9 +2,10 @@ package br.com.gerenciadorproposta.resource;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,7 +38,7 @@ public class ClienteResource {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Cliente save(@Validated @RequestBody Cliente cliente) {
+    public Cliente save(@Valid @RequestBody Cliente cliente) {
         return clienteService.save(cliente);
     }
 
