@@ -17,6 +17,7 @@ public class SwaggerConfig {
 	@Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
+            .useDefaultResponseMessages(false)
             .select()
             .apis(RequestHandlerSelectors.basePackage("br.com.gerenciadorproposta"))
             .paths(PathSelectors.any())
@@ -24,9 +25,6 @@ public class SwaggerConfig {
             .apiInfo(
                 new ApiInfoBuilder()
                     .title("Gerenciador de Propostas")
-                    .description("")
-                    .license("")
-                    .licenseUrl("")
                     .version("1.0.0")
                     .build()
             );

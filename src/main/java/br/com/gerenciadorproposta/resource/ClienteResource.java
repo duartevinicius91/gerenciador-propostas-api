@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,9 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gerenciadorproposta.model.Cliente;
 import br.com.gerenciadorproposta.service.ClienteService;
-import io.swagger.annotations.ApiParam;
 
-@RestController()
+@RestController
 @RequestMapping("/clientes")
 public class ClienteResource {
 
@@ -35,14 +35,14 @@ public class ClienteResource {
         return clienteService.findOne(id);
     }
 
-    @PostMapping()
+    @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Cliente save(@RequestBody Cliente cliente) {
+    public Cliente save(@Validated @RequestBody Cliente cliente) {
         return clienteService.save(cliente);
     }
 
     @PutMapping("/{id}")
-    public Cliente update(@PathVariable("id") Long id, @RequestBody Cliente cliente) {
+    public Cliente update(@PathVariable("id") Long id, @Valid @RequestBody Cliente cliente) {
         return clienteService.update(cliente);
     }
 
