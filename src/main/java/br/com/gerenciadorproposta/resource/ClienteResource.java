@@ -53,7 +53,7 @@ public class ClienteResource {
         @ApiResponse(code = 400, message = "Bad request", response = ApiError.class)
     )
     public Cliente update(@PathVariable("id") Long id, @Valid @RequestBody Cliente cliente) {
-        return clienteService.update(cliente);
+        return clienteService.update(id, cliente);
     }
 
     @DeleteMapping("/{id}")

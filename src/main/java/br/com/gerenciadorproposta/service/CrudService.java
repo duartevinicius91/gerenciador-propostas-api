@@ -13,8 +13,8 @@ public interface CrudService<T, ID> {
 
     void delete(ID id) throws EntityNotFoundException, BusinessException;
 
-    T update(T cliente) throws EntityNotFoundException, BusinessException;
+    T update(ID id, T t) throws EntityNotFoundException, BusinessException;
 
-    T save(T cliente) throws EntityNotFoundException, BusinessException;
+    T save(T t) throws EntityNotFoundException, BusinessException;
 
 }
