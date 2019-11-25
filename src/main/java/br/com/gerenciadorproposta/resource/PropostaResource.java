@@ -16,27 +16,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.gerenciadorproposta.model.Cliente;
+import br.com.gerenciadorproposta.model.Proposta;
 import br.com.gerenciadorproposta.resource.ApiControllerAdvice.ApiError;
-import br.com.gerenciadorproposta.service.ClienteService;
+import br.com.gerenciadorproposta.service.PropostaService;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping("/clientes")
-public class ClienteResource implements CrudResource<Cliente> {
+@RequestMapping("/propostas")
+public class PropostaResource implements CrudResource<Proposta> {
 
     @Autowired
-    private ClienteService clienteService;
+    private PropostaService propostaService;
 
     @GetMapping
-    public List<Cliente> findAll() {
-        return clienteService.findAll();
+    public List<Proposta> findAll() {
+        return propostaService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Cliente findOne(@PathVariable("id") Long id) {
-        return clienteService.findOne(id);
+    public Proposta findOne(@PathVariable("id") Long id) {
+        return propostaService.findOne(id);
     }
 
     @PostMapping
@@ -44,21 +44,21 @@ public class ClienteResource implements CrudResource<Cliente> {
         @ApiResponse(code = 400, message = "Bad request", response = ApiError.class)
     )
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Cliente save(@Valid @RequestBody Cliente cliente) {
-        return clienteService.save(cliente);
+    public Proposta save(@Valid @RequestBody Proposta proposta) {
+        return propostaService.save(proposta);
     }
 
     @PutMapping("/{id}")
     @ApiResponses(
         @ApiResponse(code = 400, message = "Bad request", response = ApiError.class)
     )
-    public Cliente update(@PathVariable("id") Long id, @Valid @RequestBody Cliente cliente) {
-        return clienteService.update(id, cliente);
+    public Proposta update(@PathVariable("id") Long id, @Valid @RequestBody Proposta proposta) {
+        return propostaService.update(proposta);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") Long id) {
-        clienteService.delete(id);
+        propostaService.delete(id);
     }
 }
