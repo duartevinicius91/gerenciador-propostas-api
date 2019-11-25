@@ -1,13 +1,16 @@
-package br.com.gerenciadorproposta.model;
+﻿package br.com.gerenciadorproposta.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -48,4 +51,8 @@ public class Cliente {
     @Email(message = "O campo deve conter um e-mail válido.")
     @NotEmpty(message = "O campo é obrigatório.")
     private String email;
+
+    @ApiModelProperty(value = "Propostas do cliente", example = "[ { } ]")
+    @OneToMany(mappedBy = "cliente")
+    private List<Proposta> propostas;
 }

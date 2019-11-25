@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/clientes")
-public class ClienteResource {
+public class ClienteResource implements CrudResource<Cliente> {
 
     @Autowired
     private ClienteService clienteService;
