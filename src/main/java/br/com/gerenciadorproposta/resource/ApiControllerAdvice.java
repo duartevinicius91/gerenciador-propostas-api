@@ -1,7 +1,10 @@
 package br.com.gerenciadorproposta.resource;
 
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -11,12 +14,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import br.com.gerenciadorproposta.exception.BusinessException;
 import br.com.gerenciadorproposta.exception.EntityNotFoundException;
-import io.swagger.annotations.ApiModel;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 @ControllerAdvice
 @Slf4j

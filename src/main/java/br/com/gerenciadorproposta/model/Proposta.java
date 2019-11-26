@@ -10,6 +10,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -48,8 +49,9 @@ public class Proposta {
     @ApiModelProperty(value = "Status")
     private Status status;
 
-    @ApiModelProperty(value = "Cliente", example = "1")
+    @ApiModelProperty(hidden = true)
     @NotNull
     @ManyToOne
+    @JsonIgnore
     private Cliente cliente;
 }
