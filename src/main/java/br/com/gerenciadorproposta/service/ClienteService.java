@@ -41,7 +41,7 @@ public class ClienteService implements CrudService<Cliente, Long> {
             clienteAtualizado.setRazaoSocial(cliente.getRazaoSocial());
             clienteAtualizado.setTelefone(cliente.getTelefone());
             return repository.save(clienteAtualizado);
-        } catch (EntityNotFoundException e) {
+        } catch (javax.persistence.EntityNotFoundException e) {
             throw new EntityNotFoundException("Registro não encontrado.", e);
         }
     }
