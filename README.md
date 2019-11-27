@@ -28,7 +28,7 @@ __Produção__
 Endereço: https://gerenciador-proposta-api.herokuapp.com/swagger-ui.html#/
 
 
-###Regras para Commit, Branch e Pull Request
+### Regras para Commit, Branch e Pull Request
 
 Nosso padrão de commit consiste no número da história no github e quem desenvolveu:
 
