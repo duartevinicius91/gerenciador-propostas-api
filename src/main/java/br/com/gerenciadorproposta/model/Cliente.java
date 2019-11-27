@@ -1,4 +1,4 @@
-﻿package br.com.gerenciadorproposta.model;
+package br.com.gerenciadorproposta.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
