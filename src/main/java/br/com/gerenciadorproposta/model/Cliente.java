@@ -15,6 +15,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.caelum.stella.bean.validation.CNPJ;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -54,5 +56,6 @@ public class Cliente {
 
     @ApiModelProperty(value = "Propostas do cliente", example = "[ { } ]")
     @OneToMany(mappedBy = "cliente")
+    @JsonIgnore
     private List<Proposta> propostas;
 }

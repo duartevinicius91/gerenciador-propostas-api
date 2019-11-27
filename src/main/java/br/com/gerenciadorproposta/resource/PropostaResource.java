@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("clientes/{idCliente}/propostas")
-public class PropostaResource {
+public class PropostaResource { // está desrespeitando a interface CrudResource
 
     @Autowired
     private PropostaService propostaService;
