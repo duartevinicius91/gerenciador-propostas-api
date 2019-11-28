@@ -5,6 +5,6 @@ import lombok.Getter;
 @Getter
 public enum Status {
 
-    EM_ANÁLISE, APROVADA, RECUSADA;
+    EM_ANALISE, APROVADA, RECUSADA;
 
 }

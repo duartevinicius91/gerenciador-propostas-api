@@ -21,11 +21,12 @@ public class PropostaService { // está desrespeitando a interface CrudService
     @Autowired
     private ClienteRepository clienteRepository;
 
-    public List<Proposta> findAll(Long idCliente) {
-        Cliente cliente = clienteRepository.findById(idCliente)
-                .orElseThrow(() -> new EntityNotFoundException("Registro não encontrado."));
-        List<Proposta> propostas = cliente.getPropostas();
-        return propostas;
+    public List<Proposta> findByCliente(Long idCliente) {
+        return propostaRepository.findByClienteId(idCliente);
+    }
+
+    public List<Proposta> findAll() {
+        return propostaRepository.findAll();
     }
 
     public Proposta findOne(Long idCliente, Long idProposta) throws EntityNotFoundException, BusinessException {
