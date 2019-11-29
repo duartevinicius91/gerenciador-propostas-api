@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import br.com.gerenciadorproposta.exception.BusinessException;
 import br.com.gerenciadorproposta.exception.EntityNotFoundException;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,8 +25,11 @@ public class ApiControllerAdvice {
     @Data
     class ApiError {
         private Date timestamp;
+        @ApiModelProperty(value = "Código HTTP")
         private int status;
+        @ApiModelProperty(value = "Tipo de erro")
         private String error;
+        @ApiModelProperty(value = "Mensagem de erro")
         private String message;
         private Map<String, List<String>> errors;
     }

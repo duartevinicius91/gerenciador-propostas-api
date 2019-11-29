@@ -24,7 +24,7 @@ public class ClienteService implements CrudService<Cliente, Long> {
     @Override
     public Cliente findOne(Long id) throws EntityNotFoundException {
         return repository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Registro não encontrado."));
+            .orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado."));
     }
 
     @Override
@@ -33,17 +33,9 @@ public class ClienteService implements CrudService<Cliente, Long> {
     }
 
     @Override
-    public Cliente update(Long id, Cliente cliente) throws EntityNotFoundException, BusinessException {
-        try {
-            Cliente clienteAtualizado = repository.getOne(id);
-            clienteAtualizado.setCnpj(cliente.getCnpj());
-            clienteAtualizado.setEmail(cliente.getEmail());
-            clienteAtualizado.setRazaoSocial(cliente.getRazaoSocial());
-            clienteAtualizado.setTelefone(cliente.getTelefone());
-            return repository.save(clienteAtualizado);
-        } catch (javax.persistence.EntityNotFoundException e) {
-            throw new EntityNotFoundException("Registro não encontrado.", e);
-        }
+    public Cliente update(Long id, Cliente clienteAtualizado) throws EntityNotFoundException, BusinessException {
+        findOne(id);
+        return repository.save(clienteAtualizado);
     }
 
     @Override

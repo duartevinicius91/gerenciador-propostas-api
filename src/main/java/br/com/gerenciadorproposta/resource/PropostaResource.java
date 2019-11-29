@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping("clientes/propostas")
+@RequestMapping("/propostas")
 public class PropostaResource { // está desrespeitando a interface CrudResource
 
     @Autowired
@@ -34,32 +34,32 @@ public class PropostaResource { // está desrespeitando a interface CrudResource
         return propostaService.findAll();
     }
 
-    @GetMapping("/{idCliente}")
-    public List<Proposta> findByIdCliente(@PathVariable("idCliente") Long idCliente) {
-        return propostaService.findByCliente(idCliente);
+    @GetMapping("/cliente/{id}")
+    public List<Proposta> findByid(@PathVariable("id") Long id) {
+        return propostaService.findByCliente(id);
     }
 
-    @GetMapping("/{idCliente}/{idProposta}")
-    public Proposta findOne(@PathVariable("idCliente") Long idCliente, @PathVariable("idProposta") Long idProposta) {
-        return propostaService.findOne(idCliente, idProposta);
+    @GetMapping("/{id}")
+    public Proposta findOne(@PathVariable("id") Long id) {
+        return propostaService.findOne(id);
     }
 
-    @PostMapping("/{idCliente}")
+    @PostMapping
     @ApiResponses(@ApiResponse(code = 400, message = "Bad request", response = ApiError.class))
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Proposta save(@PathVariable("idCliente") Long idCliente, @Valid @RequestBody Proposta proposta) {
-        return propostaService.save(idCliente, proposta);
+    public Proposta save(@Valid @RequestBody Proposta proposta) {
+        return propostaService.save(proposta);
     }
 
-    @PutMapping("/{idCliente}/{idProposta}")
+    @PutMapping("/{id}")
     @ApiResponses(@ApiResponse(code = 400, message = "Bad request", response = ApiError.class))
-    public Proposta update(@PathVariable("idCliente") Long idCliente, @PathVariable("idProposta") Long idProposta, @Valid @RequestBody Proposta proposta) {
-        return propostaService.update(idCliente, idProposta, proposta);
+    public Proposta update(@PathVariable("id") Long id, @Valid @RequestBody Proposta proposta) {
+        return propostaService.update(id, proposta);
     }
 
-    @DeleteMapping("/{idCliente}/{idProposta}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable("idCliente") Long idCliente, @PathVariable("idProposta") Long idProposta) {
-        propostaService.delete(idCliente, idProposta);
+    public void delete(@PathVariable("id") Long id) {
+        propostaService.delete(id);
     }
 }

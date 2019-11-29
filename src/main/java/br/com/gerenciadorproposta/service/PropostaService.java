@@ -7,64 +7,56 @@ import org.springframework.stereotype.Service;
 
 import br.com.gerenciadorproposta.exception.BusinessException;
 import br.com.gerenciadorproposta.exception.EntityNotFoundException;
-import br.com.gerenciadorproposta.model.Cliente;
 import br.com.gerenciadorproposta.model.Proposta;
-import br.com.gerenciadorproposta.repository.ClienteRepository;
+import br.com.gerenciadorproposta.service.ClienteService;
 import br.com.gerenciadorproposta.repository.PropostaRepository;
 
 @Service
-public class PropostaService { // está desrespeitando a interface CrudService
-
+public class PropostaService implements CrudService<Proposta, Long> {
     @Autowired
     private PropostaRepository propostaRepository;
 
     @Autowired
-    private ClienteRepository clienteRepository;
+    private ClienteService clienteService;
 
     public List<Proposta> findByCliente(Long idCliente) {
         return propostaRepository.findByClienteId(idCliente);
     }
 
+    @Override
     public List<Proposta> findAll() {
         return propostaRepository.findAll();
     }
 
-    public Proposta findOne(Long idCliente, Long idProposta) throws EntityNotFoundException, BusinessException {
-        Cliente cliente = clienteRepository.findById(idCliente)
-                .orElseThrow(() -> new EntityNotFoundException("Registro não encontrado."));
-        List<Proposta> propostas = cliente.getPropostas();
-        Proposta proposta = propostas.stream().filter(p -> p.getId() == idProposta).findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Registro não encontrado."));
-        return proposta;
+    @Override
+    public Proposta findOne(Long id) throws EntityNotFoundException, BusinessException {
+        return propostaRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Propostas não encontrada."));
     }
 
-    public void delete(Long idCliente, Long idProposta) throws EntityNotFoundException, BusinessException {
-        Cliente cliente = clienteRepository.findById(idCliente)
-                .orElseThrow(() -> new EntityNotFoundException("Registro não encontrado."));
-        List<Proposta> propostas = cliente.getPropostas();
-        Proposta proposta = propostas.stream().filter(p -> p.getId() == idProposta).findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Registro não encontrado."));
-        propostaRepository.delete(proposta);
+    @Override
+    public void delete(Long id) throws EntityNotFoundException, BusinessException {
+        propostaRepository.deleteById(id);
     }
 
-    public Proposta update(Long idCliente, Long idProposta, Proposta proposta)
-            throws EntityNotFoundException, BusinessException {
-        Cliente cliente = clienteRepository.findById(idCliente)
-                .orElseThrow(() -> new EntityNotFoundException("Registro não encontrado."));
-        List<Proposta> propostas = cliente.getPropostas();
-
-        return propostas.stream().filter(p -> p.getId() == idProposta).findFirst().map(p -> {
-            p.setData(proposta.getData());
-            p.setDescricao(proposta.getDescricao());
-            p.setStatus(proposta.getStatus());
-            p.setValor(proposta.getValor());
-            return propostaRepository.save(p);
-        }).orElseThrow(() -> new EntityNotFoundException("Registro não encontrado."));
+    @Override
+    public Proposta update(Long id, Proposta proposta) throws EntityNotFoundException, BusinessException {
+        try {
+            clienteService.findOne(proposta.getCliente().getId());
+        } catch (EntityNotFoundException e) {
+            throw new BusinessException(e.getMessage());
+        }
+        findOne(id);
+        return propostaRepository.save(proposta);
     }
 
-    public Proposta save(Long idCliente, Proposta proposta) throws EntityNotFoundException, BusinessException {
-        Cliente cliente = clienteRepository.getOne(idCliente);
-        proposta.setCliente(cliente);
+    @Override
+    public Proposta save(Proposta proposta) throws EntityNotFoundException, BusinessException {
+        try {
+            clienteService.findOne(proposta.getCliente().getId());
+        } catch (EntityNotFoundException e) {
+            throw new BusinessException(e.getMessage());
+        }
         return propostaRepository.save(proposta);
     }
 

@@ -13,7 +13,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiModelProperty.AccessMode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,7 +26,7 @@ import lombok.Setter;
 @Entity
 public class Proposta {
 
-    @ApiModelProperty(value = "Código da proposta", example = "1", accessMode = AccessMode.READ_ONLY, readOnly = true)
+    @ApiModelProperty(value = "Código da proposta", example = "1")
     @Id
     @GeneratedValue
     private Long id;
@@ -40,15 +39,15 @@ public class Proposta {
     @NotNull
     private Double valor;
 
-    @ApiModelProperty(value = "Data", example = "2019-12-04")
+    @ApiModelProperty(value = "Data da oferta inicial", example = "2019-12-04")
     @JsonFormat(pattern = "yyyy-MM-dd")
     @NotNull
     private LocalDate data;
 
     @ApiModelProperty(value = "Status")
+    @NotNull
     private Status status;
 
-    @ApiModelProperty(accessMode = AccessMode.READ_ONLY, readOnly = true)
     @NotNull
     @ManyToOne
     private Cliente cliente;

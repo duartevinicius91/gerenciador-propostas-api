@@ -20,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import br.com.caelum.stella.bean.validation.CNPJ;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiModelProperty.AccessMode;
 
 @ApiModel(description = "Representa um cliente no sistema.")
 @Getter
@@ -30,7 +29,7 @@ import io.swagger.annotations.ApiModelProperty.AccessMode;
 @Entity
 public class Cliente {
 
-    @ApiModelProperty(value = "Código do cliente", example = "1", accessMode = AccessMode.READ_ONLY, readOnly = true)
+    @ApiModelProperty(value = "Código do cliente", example = "1")
     @Id
     @GeneratedValue
     private Long id;
